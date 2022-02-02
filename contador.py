@@ -1,7 +1,7 @@
 import sys
 from pyspark import SparkContext, SparkConf
 if __name__ == "__main__":
-    sc = SparkContext("local","PySpark Exemplo - Desafio Dataproc")
+    sc = SparkContext("local","PySpark Exemplo - Desafio Real-Time")
     words = sc.textFile("caminho_do_gs.txt").flatMap(lambda line: line.split(" "))
     wordCounts = words.map(lambda word: (word, 1)).reduceByKey(lambda a,b:a +b).sortBy(lambda a:a[1], ascending=False)
     wordCounts.saveAsTextFile("caminho_do_gs/resultado")
